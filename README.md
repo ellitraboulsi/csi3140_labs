@@ -1,4 +1,4 @@
-# csi3x40_labs
+# csi3140_labs
 
-This repository contains the lab assignments for the CSI3X40 course.
+This repository contains the lab assignments for the CSI3140 course.
 
