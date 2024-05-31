@@ -1,5 +1,4 @@
 ```javascript
-// pacman.js
 
 // Function to create the game board
 function createGame(n) {
