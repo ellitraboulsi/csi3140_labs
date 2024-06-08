@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>1D PacMan</title>
+    <style>
+        #gameBoard {
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
 </head>
 <body>
+    <div id="gameBoard"></div>
+    <div>Score: <span id="score">0</span></div>
     <script>
         let score = 0;
 
@@ -43,6 +51,7 @@
             if (!game.includes(".")) {
                 console.log("Level completed!");
                 game = createGame(game.length);
+                updateDisplay(game);
             }
         }
 
@@ -58,13 +67,29 @@
         function startGhostMovement(game) {
             setInterval(() => {
                 moveGhost(game);
-                console.log(game);
+                updateDisplay(game);
             }, 2000);
         }
 
+        function updateDisplay(game) {
+            document.getElementById("gameBoard").textContent = game.join("");
+            document.getElementById("score").textContent = score;
+        }
+
         let game = createGame(10);
-        console.log(game);
+        updateDisplay(game);
         startGhostMovement(game);
+
+        // Adding event listeners for manual testing
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                moveLeft(game);
+                updateDisplay(game);
+            } else if (event.key === 'ArrowRight') {
+                moveRight(game);
+                updateDisplay(game);
+            }
+        });
     </script>
 </body>
 </html>
