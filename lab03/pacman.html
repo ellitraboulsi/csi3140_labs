@@ -1,13 +1,21 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1D PacMan</title>
 </head>
 <body>
-    <script src="pacman.js"></script>
+    <script>
+        function createGame(n) {
+            const game = new Array(n).fill(".");
+            const pacmanIndex = Math.floor(n / 2);
+            game[pacmanIndex] = "C";
+            game[Math.floor(Math.random() * n)] = "^";
+            game[Math.floor(Math.random() * n)] = "@";
+            return game;
+        }
+
+        console.log(createGame(10));
+    </script>
 </body>
 </html>
-```
