@@ -6,6 +6,8 @@
 </head>
 <body>
     <script>
+        let score = 0;
+
         function createGame(n) {
             const game = new Array(n).fill(".");
             const pacmanIndex = Math.floor(n / 2);
@@ -18,25 +20,51 @@
         function moveLeft(game) {
             const index = game.indexOf("C");
             if (index > 0) {
+                if (game[index - 1] === ".") score++;
                 game[index] = ".";
                 game[index - 1] = "C";
             }
+            checkLevelCompletion(game);
             return game;
         }
 
         function moveRight(game) {
             const index = game.indexOf("C");
             if (index < game.length - 1) {
+                if (game[index + 1] === ".") score++;
                 game[index] = ".";
                 game[index + 1] = "C";
             }
+            checkLevelCompletion(game);
             return game;
+        }
+
+        function checkLevelCompletion(game) {
+            if (!game.includes(".")) {
+                console.log("Level completed!");
+                game = createGame(game.length);
+            }
+        }
+
+        function moveGhost(game) {
+            const ghostIndex = game.indexOf("^");
+            const direction = Math.random() > 0.5 ? 1 : -1;
+            if ((ghostIndex > 0 && direction === -1) || (ghostIndex < game.length - 1 && direction === 1)) {
+                game[ghostIndex] = ".";
+                game[ghostIndex + direction] = "^";
+            }
+        }
+
+        function startGhostMovement(game) {
+            setInterval(() => {
+                moveGhost(game);
+                console.log(game);
+            }, 2000);
         }
 
         let game = createGame(10);
         console.log(game);
-        console.log(moveLeft(game));
-        console.log(moveRight(game));
+        startGhostMovement(game);
     </script>
 </body>
 </html>
