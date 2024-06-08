@@ -15,7 +15,28 @@
             return game;
         }
 
-        console.log(createGame(10));
+        function moveLeft(game) {
+            const index = game.indexOf("C");
+            if (index > 0) {
+                game[index] = ".";
+                game[index - 1] = "C";
+            }
+            return game;
+        }
+
+        function moveRight(game) {
+            const index = game.indexOf("C");
+            if (index < game.length - 1) {
+                game[index] = ".";
+                game[index + 1] = "C";
+            }
+            return game;
+        }
+
+        let game = createGame(10);
+        console.log(game);
+        console.log(moveLeft(game));
+        console.log(moveRight(game));
     </script>
 </body>
 </html>
